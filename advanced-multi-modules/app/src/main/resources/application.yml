@@ -1,0 +1,12 @@
+spring:
+  data:
+    mongodb:
+      database: demoDb
+      uri: mongodb://localhost:27017/
+
+server:
+  port: 8090
+
+services:
+  notifier: http://localhost:8082
+  subscription: http://localhost:8081

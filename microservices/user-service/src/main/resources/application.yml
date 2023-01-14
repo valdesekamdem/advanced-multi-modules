@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      database: userDb
+      uri: mongodb://localhost:27017/
+
+services:
+  notifier: http://localhost:8082
+  subscription: http://localhost:8081
