@@ -1,6 +1,6 @@
 package com.valdesekamdem.ammapp.services.subscription.subscription.service
 
-import com.valdesekamdem.ammapp.services.subscription.notifier.NotifierService
+import com.valdesekamdem.ammapp.proxy.notifier.SubscriptionNotifierServiceProxy
 import com.valdesekamdem.ammapp.services.subscription.plan.service.PlanService
 import com.valdesekamdem.ammapp.services.subscription.subscription.dto.Subscription
 import com.valdesekamdem.ammapp.services.subscription.subscription.dto.SubscriptionCreate
@@ -19,7 +19,7 @@ import java.time.temporal.ChronoUnit
 class SubscriptionServiceImpl @Autowired constructor(
     private val subscriptionRepository: SubscriptionRepository,
     private val planService: PlanService,
-    private val notifierService: NotifierService,
+    private val notifierServiceProxy: SubscriptionNotifierServiceProxy,
 ) : SubscriptionService {
 
     override suspend fun subscribe(subscriptionCreate: SubscriptionCreate): Subscription {
@@ -41,7 +41,7 @@ class SubscriptionServiceImpl @Autowired constructor(
         return subscriptionRepository.save(entity)
             .toSubscription()
             .also {
-                notifierService.newSubscription(email, endDate)
+                notifierServiceProxy.newSubscription(email, endDate)
             }
     }
 

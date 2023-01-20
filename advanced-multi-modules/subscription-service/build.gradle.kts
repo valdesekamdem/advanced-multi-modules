@@ -23,6 +23,7 @@ repositories {
 
 dependencies {
     implementation(project(":subscription-service-proxy"))
+    implementation(project(":notifier-service-proxy"))
 
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
